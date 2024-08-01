@@ -47,7 +47,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
     
     Cypress._.times(3, function(){
-        it.only('campo telefone continua vazio ao preencher valor nao-numérico', function() {
+        it('campo telefone continua vazio ao preencher valor nao-numérico', function() {
             cy.get('#phone')
             .type('aaaaaaaaaaa')
             .should('have.value', '')
@@ -225,7 +225,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
       })
 
-        it.only('Faz uma requisição HTTP', function(){
+        it('Faz uma requisição HTTP', function(){
             cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html')
             .should(function(response){
                 const {status, statusText, body} = response
@@ -235,7 +235,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             })
         })
 
-
+        it('encontra o gato escondido', function(){
+            cy.get('#cat')
+            .invoke('show')
+            .should('be.visible')
+            cy.get('#title')
+            .invoke('text', 'CAT TAT')
+            cy.get('#subtitle')
+            .invoke('text', 'Teste Gatos')
+        })
     
 
 
